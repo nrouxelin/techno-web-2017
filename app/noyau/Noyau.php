@@ -23,13 +23,23 @@ class Noyau{
         //Instancier le controleur et effectuer l'action
         $classe = $route["controleur"]."Controleur";
 
+        $erreur = true;
+
         if(class_exists($classe)){
             $controleur = new $classe ($route);
             $methode = [$controleur, $route['action']];
             if(is_callable($methode)){
                 call_user_func($methode);
+                $erreur = false;
             }
         }
+
+        //Gestion des erreurs
+        if($erreur){
+            throw new Exception("Controleur ou action inconnue");
+        }
+
+
     }
 }
 
