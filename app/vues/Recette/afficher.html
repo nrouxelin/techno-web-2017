@@ -1,3 +1,5 @@
+
+<article>
 <?php
 //Simplification de l'écriture
 $recette      = $data["Recette"];
@@ -6,15 +8,20 @@ $commentaires = $data["Commentaires"];
 <h1>Recette de <?php echo $recette->nom; ?></h1>
 <em>Par <?php echo $recette->auteur; ?> </em>
 <p>
-    <img src="<?php echo DIR_IMG.$recette->lien_photo; ?>">
+    <img src="<?php echo DIR_IMG.$recette->lien_photo; ?>" />
 </p>
 <p>
     <?php echo $recette->texte; ?>
 </p>
+
+<aside>
 <h3>Commentaires : </h3>
 <?php foreach($commentaires as $c): ?>
 <strong>Par : </strong> <?php echo $c->auteur; ?><br>
 <strong>Note : </strong> <?php echo $c->note; ?>
 <p><?php echo $c->texte; ?></p>
-<hr>
+<hr />
 <?php endforeach; ?>
+</aside>
+
+</article>

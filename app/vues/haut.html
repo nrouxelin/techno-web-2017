@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="<?php echo DIR_STYLES.'style.css'; ?>" />
     <title><?php echo $vue_titre; ?> | ShareCocktails</title>
 </head>
 <body>
-<head>
-    <h1>ShareCocktails</h1>
-    <h2>Partagez vos meilleures recettes</h2>
-</head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="" class="actif">ShareCocktails</a></li>
+            <li><a href="">Catégories</a></li>
+            <li><a href="">Recettes</a></li>
+            <li style="float: right"><a href="" >Connexion</a></li>
+            <li style="float: right"><a href="" >Inscription</a></li>
+        </ul>
+    </nav>
+</header>
 
-<nav>
-    <h3>Menu</h3>
+<nav id="categories">
+    <h3>Catégories :</h3>
     <ul>
-        <li><a href="">Recettes</a></li>
-        <li><a href="">Connexion</a></li>
+        <li><a href="" class="actif">Cocktails au rhum</a></li>
+        <li><a href="">Cocktails à la vodka</a></li>
     </ul>
 </nav>
