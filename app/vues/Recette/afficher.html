@@ -17,10 +17,11 @@ $commentaires = $data["Commentaires"];
 <aside>
 <h3>Commentaires : </h3>
 <?php foreach($commentaires as $c): ?>
-<strong>Par : </strong> <?php echo $c->auteur; ?><br>
-<strong>Note : </strong> <?php echo $c->note; ?>
-<p><?php echo $c->texte; ?></p>
-<hr />
+<div class="commentaire">
+    <strong>Par : </strong> <?php echo $c->auteur; ?><br>
+    <strong>Note : </strong> <?php echo $c->note; ?>/10
+    <p><?php echo $c->texte; ?></p>
+</div>
 <?php endforeach; ?>
 </aside>
 
