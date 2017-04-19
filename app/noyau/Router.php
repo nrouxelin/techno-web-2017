@@ -14,14 +14,19 @@ class Router{
         }else{
             $parties = explode("/",$req);
             $nb_parties = count($parties);
-            if($nb_parties==3){
+            if($nb_parties==3 || $nb_parties==2){
                 $resultat["controleur"]     = $parties[0];
                 $resultat["action"]         = $parties[1];
-                $resultat["params"]["slug"] = $parties[2];
+                if($nb_parties==3)
+                    $resultat["params"]["slug"] = $parties[2];
             }
         }
 
         return $resultat;
+    }
+
+    public static function obtenirRoute($controleur, $action, $params=""){
+        return WEB_ROOT.$controleur."/".$action."/".$params;
     }
 }
 

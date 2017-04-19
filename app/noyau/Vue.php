@@ -3,6 +3,7 @@
 class Vue{
     protected $route;
     protected $data = [];
+    protected $vue_titre;
 
     public function __construct($route){
         $this->route = $route;
@@ -19,7 +20,7 @@ class Vue{
         if(file_exists($fichier_vue)){
             ob_start();//Tamporisation de la sortie
             $data      = $this->data;//Données à afficher
-            $vue_titre = $data[$controleur]->nom;//Titre de la page
+            $vue_titre = $this->vue_titre;//Titre de la page
 
             include(ROOT."/app/vues/haut.html");//Header
             include($fichier_vue);//Contenu de la page
@@ -31,6 +32,10 @@ class Vue{
             throw new DomainException("Vue introuvable : ".$fichier_vue);
         }
 
+    }
+
+    public function setTitre($titre){
+        $this->vue_titre = $titre;
     }
 
     //Méthodes magiques

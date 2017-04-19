@@ -4,6 +4,7 @@
 //Simplification de l'écriture
 $recette      = $data["Recette"];
 $commentaires = $data["Commentaires"];
+$formulaire   = $data["Formulaire"];
 ?>
 <h1>Recette de <?php echo $recette->nom; ?></h1>
 <em>Par <?php echo $recette->auteur; ?> </em>
@@ -23,6 +24,9 @@ $commentaires = $data["Commentaires"];
     <p><?php echo $c->texte; ?></p>
 </div>
 <?php endforeach; ?>
+
+<h3>Ajouter un commentaire :</h3>
+<?php $formulaire->afficherFormulaire(); ?>
 </aside>
 
 </article>
