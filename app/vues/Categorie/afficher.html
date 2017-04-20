@@ -1,0 +1,23 @@
+<?php
+//Simplification de l'écritue
+$cat      = $data["Categorie"];
+$recettes = $data["Recettes"];
+?>
+<article>
+<h1><?= $cat->nom ?></h1>
+<p>
+    <?= $cat->description ?>
+</p>
+<h3>Recettes dans cette catégorie :</h3>
+
+    <?php if(!empty($recettes)): ?>
+        <ul>
+        <?php foreach($recettes as $r): ?>
+            <li><a href="<?= Router::obtenirRoute('Recette','afficher',$r->slug) ?>"><?= $r->nom ?></a></li>
+        <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        Il n'y a pas encore de recette dans cette catégorie.
+    <?php endif; ?>
+
+</article>

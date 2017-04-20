@@ -9,8 +9,8 @@
 <header>
     <nav>
         <ul>
-            <li><a href="" class="actif">ShareCocktails</a></li>
-            <li><a href="">Catégories</a></li>
+            <li><a href="<?= WEB_ROOT ?>" class="actif">ShareCocktails</a></li>
+            <li><a href="<?= Router::obtenirRoute('Categorie','lister') ?>">Catégories</a></li>
             <li><a href="">Recettes</a></li>
             <?php if(Utilisateur::estConnecte()): ?>
                 <li style="float: right"><a href="<?= Router::obtenirRoute('Utilisateur','se_deconnecter') ?>" >Déconnexion</a></li>
@@ -23,9 +23,11 @@
 </header>
 
 <nav id="categories">
-    <h3>Catégories :</h3>
+    <?php $categories = Categorie::lister(); ?>
     <ul>
-        <li><a href="" class="actif">Cocktails au rhum</a></li>
-        <li><a href="">Cocktails à la vodka</a></li>
+        <h4>Catégories :</h4>
+    <?php foreach($categories as $c): ?>
+        <li><a href="<?= Router::obtenirRoute('Categorie','afficher',$c->slug) ?>"><?= $c->nom ?></a></li>
+    <?php endforeach; ?>
     </ul>
 </nav>

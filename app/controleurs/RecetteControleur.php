@@ -10,8 +10,8 @@ class RecetteControleur extends Controleur{
 
         //Si le formulaire a déjà été posté
         if(Utilisateur::estConnecte() && isset($_POST["note"]) && isset($_POST["texte"])){
-            $note  = $_POST["note"];
-            $texte = $_POST["texte"];
+            $note  = htmlspecialchars($_POST["note"]);
+            $texte = htmlspecialchars($_POST["texte"]);
 
             Commentaire::ajouter($note,$texte,$recette->id);
             header("Location:".$action);

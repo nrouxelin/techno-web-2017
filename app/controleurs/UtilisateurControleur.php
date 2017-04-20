@@ -19,7 +19,8 @@ class UtilisateurControleur extends Controleur{
                         if(Utilisateur::emailUtilise($data["email"])){
                             $erreurs["email"] = "Cette adresse email est déjà utilisée.";
                         }else{
-                            Utilisateur::ajouter($data["nom"], $data["mot_passe"], $data["email"]);
+                            Utilisateur::ajouter(htmlspecialchars($data["nom"]),
+                             $data["mot_passe"], htmlspecialchars($data["email"]));
                         }
                     }
                 }else{
@@ -52,7 +53,7 @@ class UtilisateurControleur extends Controleur{
         //Si le formulaire a déjà été posté
         if(isset($_POST["nom"]) && isset($_POST["mot_passe"])){
             $erreurs;
-            $nom       = $_POST["nom"];
+            $nom       = htmlspecialchars($_POST["nom"]);
             $mot_passe = $_POST["mot_passe"];
 
             $utilisateur = Utilisateur::identifier($nom,$mot_passe);

@@ -1,0 +1,14 @@
+<?php
+//Simplification de l'écriture
+$cat = $data["Categories"];
+?>
+
+<article>
+<h1>Catégories</h1>
+<p>Voici la liste des catégories disponibles sur ShareCocktails.</p>
+<ul>
+    <?php foreach($cat as $c): ?>
+        <li><a href="<?= Router::obtenirRoute('Categorie','afficher',$c->slug) ?>"><?= $c->nom ?></a></li>
+    <?php endforeach; ?>
+</ul>
+</article>
