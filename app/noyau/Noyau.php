@@ -36,7 +36,7 @@ class Noyau{
 
         //Gestion des erreurs
         if($erreur){
-            throw new Exception("Controleur ou action inconnue");
+            throw new Exception("Controleur ou action inconnue : ".$classe);
         }
 
 

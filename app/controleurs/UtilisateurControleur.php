@@ -3,6 +3,10 @@
 class UtilisateurControleur extends Controleur{
 
     public function s_inscrire(){
+        //Si l'utilisateur est déjà connecté
+        if(Utilisateur::estConnecte()){
+            header("Location: ".WEB_ROOT);
+        }
         //Si le formulaire a déjà été envoyé
         if(isset($_POST["nom"]) && isset($_POST["mot_passe"]) &&
             isset($_POST["confirmation"]) && isset($_POST["email"])){
@@ -41,6 +45,10 @@ class UtilisateurControleur extends Controleur{
     }
 
     public function se_connecter(){
+        //Si l'utilisateur est déjà connecté
+        if(Utilisateur::estConnecte()){
+            header("Location: ".WEB_ROOT);
+        }
         //Si le formulaire a déjà été posté
         if(isset($_POST["nom"]) && isset($_POST["mot_passe"])){
             $erreurs;
@@ -51,9 +59,11 @@ class UtilisateurControleur extends Controleur{
             if(!$utilisateur){
                 $erreurs["mot_passe"] = "Nom d'utilisateur ou mot de passe incorrect.";
             }else{
-                $_SESSION["utilisateur"] = $utilisateur;
-                var_dump($_SESSION);
-                die();
+                $_SESSION["id"]    = $utilisateur->id;
+                $_SESSION["nom"]   = $nom;
+                $_SESSION["email"] = $utilisateur->email;
+                $_SESSION["admin"] = $utilisateur->admin;
+                header("Location: ".WEB_ROOT);
             }
         }
 
@@ -74,6 +84,7 @@ class UtilisateurControleur extends Controleur{
     public function se_deconnecter(){
         $_SESSION = [];
         session_destroy();
+        header("Location: ".WEB_ROOT);
     }
 
 

@@ -1,0 +1,6 @@
+<article>
+<h1>Bienvenue sur ShareCocktails</h1>
+<?php if(Utilisateur::estConnecte()): ?>
+    Bonjour <strong><?= $_SESSION["nom"] ?></strong>, ravi de vous revoir.
+<?php endif; ?>
+</article>

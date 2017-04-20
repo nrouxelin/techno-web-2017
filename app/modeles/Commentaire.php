@@ -18,6 +18,19 @@ class Commentaire extends Modele{
         $req->execute([":recette_id" => $recette_id]);
         return $req->fetchAll();
     }
+
+    public static function ajouter($note,$texte,$recette_id){
+        $bdd = Bdd::getInstance();
+        $sql = "INSERT INTO commentaires(note,texte,recette,auteur)
+                VALUES (:note,:texte,:recette,:auteur)";
+        $req = $bdd->prepare($sql);
+        $req->execute([
+            ":note"    => $note,
+            ":texte"   => $texte,
+            ":recette" => $recette_id,
+            ":auteur"  => $_SESSION["id"]
+        ]);
+    }
 }
 
 

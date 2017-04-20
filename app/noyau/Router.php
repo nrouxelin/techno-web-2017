@@ -9,15 +9,15 @@ class Router{
         ];
 
         if($req==="" || $req==="/"){
-            $resultat["controleur"] = "Index";
+            $resultat["controleur"] = "Accueil";
             $resultat["action"]     = "afficher";
         }else{
             $parties = explode("/",$req);
             $nb_parties = count($parties);
-            if($nb_parties==3 || $nb_parties==2){
+            if($nb_parties>=2){
                 $resultat["controleur"]     = $parties[0];
                 $resultat["action"]         = $parties[1];
-                if($nb_parties==3)
+                if($nb_parties>=3)
                     $resultat["params"]["slug"] = $parties[2];
             }
         }

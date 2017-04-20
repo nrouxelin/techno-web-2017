@@ -46,11 +46,11 @@ class Utilisateur extends Modele{
     }
 
     public static function estConnecte(){
-        return !empty($_SESSION['utilisateur']);
+        return !empty($_SESSION['id']);
     }
 
     public static function estAdmin(){
-        return (self::estConnecte)&&($_SESSION['utilisateur']);
+        return (self::estConnecte)&&($_SESSION['admin']);
     }
 }
 
