@@ -19,6 +19,8 @@ class RecetteControleur extends Controleur{
         $this->vue->setTitre($this->vue->Recette->nom);
         $this->vue->afficher();
     }
+
+
 }
 
  ?>

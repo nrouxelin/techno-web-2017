@@ -12,8 +12,12 @@
             <li><a href="" class="actif">ShareCocktails</a></li>
             <li><a href="">Catégories</a></li>
             <li><a href="">Recettes</a></li>
-            <li style="float: right"><a href="" >Connexion</a></li>
-            <li style="float: right"><a href="" >Inscription</a></li>
+            <?php if(Utilisateur::estConnecte()): ?>
+                <li style="float: right"><a href="<?= Router::obtenirRoute('Utilisateur','se_deconnecter') ?>" >Déconnexion</a></li>
+            <?php else: ?>
+                <li style="float: right"><a href="<?= Router::obtenirRoute('Utilisateur','se_connecter') ?>" >Connexion</a></li>
+                <li style="float: right"><a href="<?= Router::obtenirRoute('Utilisateur','s_inscrire') ?>" >Inscription</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 </header>
