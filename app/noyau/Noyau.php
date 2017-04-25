@@ -36,7 +36,8 @@ class Noyau{
 
         //Gestion des erreurs
         if($erreur){
-            throw new Exception("Controleur ou action inconnue : ".$classe);
+            //On redirige vers l'erreur 404
+            header("Location: ".Router::obtenirRoute("Erreur","erreur404"));
         }
 
 

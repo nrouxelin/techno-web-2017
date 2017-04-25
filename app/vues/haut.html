@@ -11,7 +11,7 @@
         <ul>
             <li><a href="<?= WEB_ROOT ?>" class="actif">ShareCocktails</a></li>
             <li><a href="<?= Router::obtenirRoute('Categorie','lister') ?>">Catégories</a></li>
-            <li><a href="">Recettes</a></li>
+            <li><a href="<?= Router::obtenirRoute('Recette','lister') ?>">Recettes</a></li>
             <?php if(Utilisateur::estConnecte()): ?>
                 <li style="float: right"><a href="<?= Router::obtenirRoute('Utilisateur','se_deconnecter') ?>" >Déconnexion</a></li>
             <?php else: ?>
@@ -25,9 +25,20 @@
 <nav id="categories">
     <?php $categories = Categorie::lister(); ?>
     <ul>
-        <h4>Catégories :</h4>
+        <li class="menu-titre">Catégories :</li>
     <?php foreach($categories as $c): ?>
         <li><a href="<?= Router::obtenirRoute('Categorie','afficher',$c->slug) ?>"><?= $c->nom ?></a></li>
     <?php endforeach; ?>
+    <?php if(Utilisateur::estConnecte()): ?>
+        <li class="menu-titre"> Mon compte </li>
+        <li><a href="<?= Router::obtenirRoute('Recette','mes_recettes') ?>">Mes recettes</a></li>
+        <li><a href="<?= Router::obtenirRoute('Recette','ajouter') ?>">Ajouter une recette</a></li>
+    <?php endif; ?>
+    <?php if(Utilisateur::estAdmin()): ?>
+        <li class="menu-titre">Administration</li>
+        <li><a href="<?= Router::obtenirRoute('Recette','gerer') ?>">Gestion des recettes </a></li>
+        <li><a href="<?= Router::obtenirRoute('Categorie','gerer') ?>">Gestion des catégories</a></li>
+        <li><a href="<?= Router::obtenirRoute('Utilisateur','gerer') ?>">Gestion des utilisateurs</a></li>
+    <?php endif; ?>
     </ul>
 </nav>

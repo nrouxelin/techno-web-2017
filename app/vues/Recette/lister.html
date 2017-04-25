@@ -1,0 +1,13 @@
+<?php
+//Simplification de l'écriture
+$rec = $data["Recettes"];
+?>
+<article>
+<h1>Liste de toutes les recettes</h1>
+<p>Voici la liste de toutes les recettes disponibles sur ShareCocktails.</p>
+<ul>
+    <?php foreach($rec as $r): ?>
+        <li><a href="<?= Router::obtenirRoute('Recette','afficher',$r->slug) ?>"><?= $r->nom ?></a></li>
+    <?php endforeach; ?>
+</ul>
+</article>

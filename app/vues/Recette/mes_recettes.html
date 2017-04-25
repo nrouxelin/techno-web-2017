@@ -1,0 +1,19 @@
+<?php
+//Simplification de l'écriture
+$recettes = $data["Recettes"];
+?>
+
+<article>
+<h1>Mes recettes</h1>
+<p>Voici vos recettes, <?= $_SESSION["nom"] ?> :</p>
+<?php if(!empty($recettes)): ?>
+    <ul>
+        <?php foreach($recettes as $r): ?>
+            <li><a href="<?= Router::obtenirRoute('Recette','modifier',$r->slug) ?>"><?= $r->nom ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p>Vous n'avez pas encore posté de recette.</p>
+<?php endif; ?>
+
+</article>

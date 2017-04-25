@@ -1,0 +1,28 @@
+<?php
+//Simplification de l'écriture
+$recettes = $data["Recettes"];
+?>
+
+<article>
+<h1>Gestion des recettes</h1>
+<table>
+<tr>
+    <th>Titre</th>
+    <th>Etat</th>
+    <th>Actions</th>
+</tr>
+
+<?php foreach($recettes as $r): ?>
+    <tr>
+        <td><a href="<?= Router::obtenirRoute('Recette','afficher',$r->slug) ?>"><?= $r->nom ?></a></td>
+        <?php if($r->validee): ?>
+            <td>Validée</td>
+        <?php else: ?>
+            <td><a href="<?= Router::obtenirRoute('Recette','valider',$r->slug) ?>">Valider</a></td>
+        <?php endif; ?>
+        <td><a href="<?= Router::obtenirRoute('Recette','supprimer',$r->slug) ?>">Supprimer</a></td>
+    </tr>
+<?php endforeach; ?>
+</table>
+
+</article>

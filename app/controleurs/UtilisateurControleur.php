@@ -21,6 +21,7 @@ class UtilisateurControleur extends Controleur{
                         }else{
                             Utilisateur::ajouter(htmlspecialchars($data["nom"]),
                              $data["mot_passe"], htmlspecialchars($data["email"]));
+                             header("Location: ".Router::obtenirRoute("Utilisateur","se_connecter"));
                         }
                     }
                 }else{

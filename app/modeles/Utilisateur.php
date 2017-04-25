@@ -50,7 +50,7 @@ class Utilisateur extends Modele{
     }
 
     public static function estAdmin(){
-        return (self::estConnecte)&&($_SESSION['admin']);
+        return (self::estConnecte())&&($_SESSION['admin']);
     }
 }
 
