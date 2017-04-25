@@ -52,6 +52,31 @@ class Utilisateur extends Modele{
     public static function estAdmin(){
         return (self::estConnecte())&&($_SESSION['admin']);
     }
+
+    public static function lister(){
+        $bdd = Bdd::getInstance();
+        $sql = "SELECT id,nom FROM utilisateurs ORDER BY nom";
+        $req = $bdd->prepare($sql);
+        $req->setFetchMode(PDO::FETCH_CLASS,"Utilisateur");
+        $req->execute();
+        return $req->fetchAll();
+    }
+
+    public static function getFromId($id){
+        $bdd = Bdd::getInstance();
+        $sql = "SELECT id,nom FROM utilisateurs WHERE id=:id";
+        $req = $bdd->prepare($sql);
+        $req->setFetchMode(PDO::FETCH_CLASS,"Utilisateur");
+        $req->execute([":id" => $id]);
+        return $req->fetch();
+    }
+
+    public function supprimer(){
+        $bdd = Bdd::getInstance();
+        $sql = "DELETE FROM utilisateurs WHERE id==:id";
+        $req = $bdd->prepare($sql);
+        $req->execute([":id" => $this->id]);
+    }
 }
 
  ?>
