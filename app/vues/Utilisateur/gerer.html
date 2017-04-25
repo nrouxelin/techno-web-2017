@@ -1,0 +1,21 @@
+<?php
+//Simplification de l'écriture
+$utilisateurs = $data["Utilisateurs"];
+?>
+
+<article>
+    <h1>Gestion des utilisateurs</h1>
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Action</th>
+        </tr>
+
+        <?php foreach($utilisateurs as $u): ?>
+            <tr>
+                <td><?= $u->nom ?></td>
+                <td><a href="<?= Router::obtenirRoute('Utilisateur','supprimer',$u->id) ?>">Supprimer</a></td>
+            </tr>
+        <?php endforeach; ?>
+    <table>
+</article>

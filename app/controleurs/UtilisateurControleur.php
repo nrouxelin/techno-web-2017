@@ -90,6 +90,35 @@ class UtilisateurControleur extends Controleur{
     }
 
 
+    public function gerer(){
+        //Si lu'tilisateur n'est pas admin
+        if(!Utilisateur::estAdmin()){
+            header("Location: ".Router::obtenirRoute("Erreur","erreur403"));
+        }
+        //On récupère les utilisateurs
+        $utilisateurs = Utilisateur::lister();
+
+        //On envoie à la vue
+        $this->vue->Utilisateurs = $utilisateurs;
+        $this->vue->setTitre("Gestion des utilisateurs");
+        $this->vue->afficher();
+    }
+
+    public function supprimer(){
+        //Si lu'tilisateur n'est pas admin
+        if(!Utilisateur::estAdmin()){
+            header("Location: ".Router::obtenirRoute("Erreur","erreur403"));
+        }
+
+        //On récupère l'utilisateur
+        $id          = $this->route["params"]["slug"];
+        $utilisateur = Utilisateur::getFromId($id);
+
+        $utilisateur->supprimer();
+        header("Location: ".Router::obtenirRoute("Utilisateur","gerer"));
+
+    }
+
 }
 
  ?>

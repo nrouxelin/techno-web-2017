@@ -28,7 +28,6 @@ class Recette extends Modele{
                       recettes.id as id,
                       recettes.nom as nom,
                       recettes.texte as texte,
-                      recettes.lien_photo as lien_photo,
                       recettes.slug as slug,
                       utilisateurs.nom as auteur
                 FROM  recettes, utilisateurs
