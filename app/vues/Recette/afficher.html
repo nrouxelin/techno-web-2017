@@ -5,11 +5,12 @@
 $recette      = $data["Recette"];
 $commentaires = $data["Commentaires"];
 $formulaire   = $data["Formulaire"];
+$image        = $data["Image"];
 ?>
 <h1>Recette de <?php echo $recette->nom; ?></h1>
 <em>Par <?php echo $recette->auteur; ?> </em>
 <p>
-    <img src="<?php echo DIR_IMG.$recette->lien_photo; ?>" />
+    <img src="<?= $image ?>" />
 </p>
 <p>
     <?php echo $recette->texte; ?>

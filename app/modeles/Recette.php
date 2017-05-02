@@ -3,6 +3,7 @@
 class Recette extends Modele{
     public $id, $nom, $texte, $auteur, $slug, $validee;
 
+
     public static function getFromSlug($slug,$validee=true){
         $bdd = Bdd::getInstance();
         $sql = "SELECT

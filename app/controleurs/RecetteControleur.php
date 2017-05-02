@@ -1,5 +1,6 @@
 <?php
 class RecetteControleur extends Controleur{
+        public static $extensions = ['jpg','jpeg','png'];
 
     public function afficher(){
 
@@ -35,9 +36,18 @@ class RecetteControleur extends Controleur{
         $formulaire->ajouterChamp("submit","submit","Envoyer");
         $this->vue->Formulaire = $formulaire;
 
+        //On récupère l'image
+        foreach(self::$extensions as $e){
+            if(file_exists(ROOT."/www/images/".$recette->id.".".$e)){
+                $image = DIR_IMG.$recette->id.'.'.$e;
+                break;
+            }
+        }
+
         //On affiche
         $this->vue->Recette      = $recette;
         $this->vue->Commentaires = $recette->getCommentaires();
+        $this->vue->Image        = $image;
         $this->vue->setTitre($recette->nom);
         $this->vue->afficher();
     }
@@ -96,9 +106,17 @@ class RecetteControleur extends Controleur{
             $texte = "<h3>Ingrédients :</h3><p>".$ingredients."</p>
                     <h3>Préparation de la recette :</h3><p>".$explications."</p>";
 
+
             //On ajoute la recette dans la bdd
             Recette::ajouter($nom,$auteur,$cat,$texte);
             header("Location: ".Router::obtenirRoute("Recette","succes"));
+
+            //Gestion de l'image
+            //Vérification de l'extension
+            $extension_upload = strtolower(substr(strrchr($_FILES['image']['name'],'.'),1));
+            if (!in_array($extension_upload,self::$extensions)) header("Location: ".Router::obtenirRoute("Recette","ajouter"));
+            $nom_img = ROOT."www/images/".Bdd::lastInsertId.$extension_upload;
+            $res     = move_uploaded_file($_FILE["image"]["tmp_name"],$nom_image);
         }
 
 
