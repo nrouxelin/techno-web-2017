@@ -108,15 +108,18 @@ class RecetteControleur extends Controleur{
 
 
             //On ajoute la recette dans la bdd
-            Recette::ajouter($nom,$auteur,$cat,$texte);
-            header("Location: ".Router::obtenirRoute("Recette","succes"));
+            $id = Recette::ajouter($nom,$auteur,$cat,$texte);
+
 
             //Gestion de l'image
             //Vérification de l'extension
             $extension_upload = strtolower(substr(strrchr($_FILES['image']['name'],'.'),1));
             if (!in_array($extension_upload,self::$extensions)) header("Location: ".Router::obtenirRoute("Recette","ajouter"));
-            $nom_img = ROOT."www/images/".Bdd::lastInsertId.$extension_upload;
-            $res     = move_uploaded_file($_FILE["image"]["tmp_name"],$nom_image);
+            $nom_img = ROOT."www/images/".$id.".".$extension_upload;
+            $res     = move_uploaded_file($_FILES["image"]["tmp_name"],$nom_image);
+
+            //Redirection
+            header("Location: ".Router::obtenirRoute("Recette","succes"));
         }
 
 

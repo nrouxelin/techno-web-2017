@@ -99,6 +99,8 @@ class Recette extends Modele{
                 ":categorie" => $c
             ]);
         }
+
+        return $id;
     }
 
 

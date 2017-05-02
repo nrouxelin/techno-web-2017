@@ -28,6 +28,7 @@ class Bdd{
         //Si on appelle une méthode qui n'existe pas, on la délègue à l'objet PDO
         return call_user_func_array([$this->_bdd,$methode], $arg);
     }
+
 }
 
  ?>
