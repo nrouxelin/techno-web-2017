@@ -31,6 +31,17 @@ class Commentaire extends Modele{
             ":auteur"  => $_SESSION["id"]
         ]);
     }
+
+    public static function supprimer($id){
+        if(!Utilisateur::estAdmin()){
+            header("Location: ".Router::obtenirRoute("Erreur","erreur403"));
+        }else{
+            $bdd = Bdd::getInstance();
+            $sql = "DELETE FROM commentaires WHERE id==:id";
+            $req = $bdd->prepare($sql);
+            $req->execute([":id" => $id]);
+        }
+    }
 }
 
 

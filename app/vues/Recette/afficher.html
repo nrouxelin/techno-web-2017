@@ -21,6 +21,13 @@ $formulaire   = $data["Formulaire"];
 <div class="commentaire">
     <strong>Par : </strong> <?php echo $c->auteur; ?><br>
     <strong>Note : </strong> <?php echo $c->note; ?>/10
+    <?php if(Utilisateur::estAdmin()): ?>
+        <span style="float: right;">
+            <a href="<?= Router::obtenirRoute('Commentaire','supprimer',$c->id) ?>">
+            Supprimer
+        </a>
+    </span>
+<?php endif; ?>
     <p><?php echo $c->texte; ?></p>
 </div>
 <?php endforeach; ?>

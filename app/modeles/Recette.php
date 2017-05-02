@@ -115,6 +115,19 @@ class Recette extends Modele{
         $req->execute([":slug" => $this->slug]);
     }
 
+
+    public static function getRecetteFromCommentaire($commentaire_id){
+        $bdd = Bdd::getInstance();
+        $sql = "SELECT
+                recettes.slug as slug
+                FROM recettes,commentaires
+                WHERE recettes.id==commentaires.recette
+                AND commentaires.id=:id";
+        $req = $bdd->prepare($sql);
+        $req->setFetchMode(PDO::FETCH_CLASS,"Recette");
+        $req->execute([":id" => $commentaire_id]);
+        return $req->fetch();
+    }
 }
 
 
