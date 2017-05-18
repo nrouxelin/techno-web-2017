@@ -115,8 +115,8 @@ class RecetteControleur extends Controleur{
             //Vérification de l'extension
             $extension_upload = strtolower(substr(strrchr($_FILES['image']['name'],'.'),1));
             if (!in_array($extension_upload,self::$extensions)) header("Location: ".Router::obtenirRoute("Recette","ajouter"));
-            $nom_img = ROOT."www/images/".$id.".".$extension_upload;
-            $res     = move_uploaded_file($_FILES["image"]["tmp_name"],$nom_image);
+            $nom_img = ROOT."/www/images/".$id.".".$extension_upload;
+            $res     = move_uploaded_file($_FILES["image"]["tmp_name"],$nom_img);
 
             //Redirection
             header("Location: ".Router::obtenirRoute("Recette","succes"));

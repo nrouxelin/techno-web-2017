@@ -22,6 +22,21 @@ class Categorie extends Modele{
         $req->execute([":slug" => $slug]);
         return $req->fetch();
     }
+
+    public static function supprimer($id){
+        $bdd = Bdd::getInstance();
+        $sql = "DELETE FROM categories WHERE id==:id";
+        $req = $bdd->prepare($sql);
+        $req->execute([":id" => $id]);
+    }
+
+    public static function ajouter($nom,$description){
+        $bdd  = Bdd::getInstance();
+        $slug = self::genererSlug($nom);
+        $sql  = "INSERT INTO categories(nom,description,slug) VALUES (:nom,:description,:slug)";
+        $req  = $bdd->prepare($sql);
+        $req->execute([":nom" => $nom, ":description" => $description, ":slug" => $slug]);
+    }
 }
 
  ?>

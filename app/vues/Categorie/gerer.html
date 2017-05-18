@@ -1,0 +1,26 @@
+<?php
+//Simplification  de l'écriture
+$categories = $data["Categories"];
+$formulaire = $data["Formulaire"];
+?>
+
+<article>
+    <h1>Gestion des catégories</h1>
+    <h2>Catégories existantes</h2>
+    <table>
+    <tr>
+        <th>Nom</th>
+        <th>Actions</th>
+    </tr>
+
+    <?php foreach($categories as $c): ?>
+        <tr>
+            <td><?= $c->nom ?></td>
+            <td><a href="<?= Router::obtenirRoute('Categorie','supprimer',$c->id) ?>">Supprimer</a>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+
+    <h2>Ajouter une catégorie</h2>
+    <?= $formulaire->afficherFormulaire(); ?>
+</article>
