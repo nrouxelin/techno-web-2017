@@ -15,4 +15,4 @@ Il peut être nécessaire de modifier le fichier `www/.htaccess` pour faire fonc
 le système de réécriture d'URL.
 
 ## Licence
-[CC-BY-NC-SA](https://ent.normandie-univ.fr/filex/get?k=mE8tLSpTgnzH0bUxZrC)
+[CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/3.0/fr/)
